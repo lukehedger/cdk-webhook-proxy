@@ -4,4 +4,8 @@ import { InfraStack } from "../lib/infra";
 
 const app = new App();
 
-new InfraStack(app, "CdkWebhookProxyInfraStack");
+const stackName = process.env.GITHUB_PR_NUMBER
+  ? `CdkWebhookProxyInfraStack-${process.env.GITHUB_PR_NUMBER}`
+  : "CdkWebhookProxyInfraStack";
+
+new InfraStack(app, stackName);
