@@ -30,12 +30,12 @@ export class PipelineStack extends Stack {
         : GitHubTrigger.WEBHOOK,
     });
 
-    const stackName = process.env.GITHUB_HEAD_REF
-      ? `CdkWebhookProxyInfraStack-${process.env.GITHUB_HEAD_REF}`
+    const stackName = process.env.GITHUB_PR_NUMBER
+      ? `CdkWebhookProxyInfraStack-${process.env.GITHUB_PR_NUMBER}`
       : "CdkWebhookProxyInfraStack";
 
-    const buildProjectName = process.env.GITHUB_HEAD_REF
-      ? `WebhookProxy-Build-${process.env.GITHUB_HEAD_REF}`
+    const buildProjectName = process.env.GITHUB_PR_NUMBER
+      ? `WebhookProxy-Build-${process.env.GITHUB_PR_NUMBER}`
       : "WebhookProxy-Build";
 
     const buildProject = new PipelineProject(this, buildProjectName, {
@@ -81,8 +81,8 @@ export class PipelineStack extends Stack {
       templatePath: buildOutput.atPath(`${stackName}.template.json`),
     });
 
-    const pipelineName = process.env.GITHUB_HEAD_REF
-      ? `WebhookProxy-DeploymentPipeline-${process.env.GITHUB_HEAD_REF}`
+    const pipelineName = process.env.GITHUB_PR_NUMBER
+      ? `WebhookProxy-DeploymentPipeline-${process.env.GITHUB_PR_NUMBER}`
       : "WebhookProxy-DeploymentPipeline";
 
     new Pipeline(this, pipelineName, {
