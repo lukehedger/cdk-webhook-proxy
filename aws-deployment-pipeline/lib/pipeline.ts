@@ -30,9 +30,15 @@ export class PipelineStack extends Stack {
         : GitHubTrigger.WEBHOOK,
     });
 
-    const stackName = "CdkWebhookProxyInfraStack";
+    const stackName = process.env.GITHUB_HEAD_REF
+      ? `CdkWebhookProxyInfraStack-${process.env.GITHUB_HEAD_REF}`
+      : "CdkWebhookProxyInfraStack";
 
-    const buildProject = new PipelineProject(this, "WebhookProxy-Build", {
+    const buildProjectName = process.env.GITHUB_HEAD_REF
+      ? `WebhookProxy-Build-${process.env.GITHUB_HEAD_REF}`
+      : "WebhookProxy-Build";
+
+    const buildProject = new PipelineProject(this, buildProjectName, {
       buildSpec: BuildSpec.fromObject({
         version: "0.2",
         artifacts: {
@@ -55,7 +61,7 @@ export class PipelineStack extends Stack {
       environment: {
         buildImage: LinuxBuildImage.UBUNTU_14_04_NODEJS_10_14_1,
       },
-      projectName: "WebhookProxy-Build",
+      projectName: buildProjectName,
     });
 
     const buildOutput = new Artifact("InfraStack");
@@ -75,8 +81,12 @@ export class PipelineStack extends Stack {
       templatePath: buildOutput.atPath(`${stackName}.template.json`),
     });
 
-    new Pipeline(this, "DeploymentPipeline", {
-      pipelineName: "WebhookProxy-DeploymentPipeline",
+    const pipelineName = process.env.GITHUB_HEAD_REF
+      ? `WebhookProxy-DeploymentPipeline-${process.env.GITHUB_HEAD_REF}`
+      : "WebhookProxy-DeploymentPipeline";
+
+    new Pipeline(this, pipelineName, {
+      pipelineName: pipelineName,
       restartExecutionOnUpdate: true,
       stages: [
         {
