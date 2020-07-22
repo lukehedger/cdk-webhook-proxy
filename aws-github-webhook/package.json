@@ -1,0 +1,25 @@
+{
+  "name": "aws-github-webhook",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "cdk deploy",
+    "destroy": "cdk destroy",
+    "diff": "cdk diff",
+    "synth": "cdk synth",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.54.0",
+    "@types/node": "14.0.14",
+    "aws-cdk": "1.54.0",
+    "typescript": "3.9.6"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "1.54.0",
+    "@aws-cdk/aws-lambda": "1.54.0",
+    "@aws-cdk/core": "1.54.0",
+    "@octokit/rest": "18.0.1"
+  }
+}
