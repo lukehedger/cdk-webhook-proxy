@@ -32,3 +32,6 @@ jobs:
           MERGE_LABELS: "auto-merge,!protected"
           MERGE_METHOD: "merge"
           MERGE_RETRIES: "6"
+          UPDATE_LABELS: "auto-merge"
+          UPDATE_METHOD: "merge"
+          UPDATE_RETRIES: "6"
