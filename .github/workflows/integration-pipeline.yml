@@ -43,6 +43,6 @@ jobs:
       run: yarn workspace aws-infrastructure-cloud build
 
     - name: Deploy AWS integration deployment pipeline
-      run: yarn workspace aws-deployment-pipeline deploy --no-staging --require-approval never
+      run: yarn workspace aws-deployment-pipeline deploy --force --no-staging --require-approval never
       env:
         GITHUB_PR_NUMBER: ${{ github.event.number }}
