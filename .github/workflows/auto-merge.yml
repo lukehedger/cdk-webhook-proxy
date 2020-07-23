@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Auto Merge
         uses: pascalgn/automerge-action@v0.8.4
-        with:
+        env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: "auto-merge,!protected"
           MERGE_METHOD: "merge"
