@@ -2,6 +2,9 @@ version: 2
 updates:
 - package-ecosystem: npm
   directory: "/"
+  labels:
+    - "auto-merge"
+    - "dependencies"
   schedule:
     interval: daily
   open-pull-requests-limit: 99
