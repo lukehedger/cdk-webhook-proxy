@@ -53,7 +53,7 @@ export class PipelineStack extends Stack {
           build: {
             commands: [
               "yarn workspace aws-infrastructure-cloud build",
-              "GITHUB_PR_NUMBER=${process.env.GITHUB_PR_NUMBER} yarn workspace aws-infrastructure-cloud synth",
+              `GITHUB_PR_NUMBER=${process.env.GITHUB_PR_NUMBER} yarn workspace aws-infrastructure-cloud synth`,
             ],
           },
         },
