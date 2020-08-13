@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "@aws-cdk/aws-sns": "1.54.0",
-    "@aws-cdk/core": "1.54.0"
+    "@aws-cdk/core": "1.58.0"
   }
 }
