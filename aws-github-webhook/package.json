@@ -20,6 +20,6 @@
     "@aws-cdk/aws-apigateway": "1.54.0",
     "@aws-cdk/aws-lambda": "1.54.0",
     "@aws-cdk/core": "1.54.0",
-    "@octokit/rest": "18.0.1"
+    "@octokit/rest": "18.0.4"
   }
 }
